@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-gateway-server
+  labels:
+    app: gateway-server
+spec:
+  selector:
+    matchLabels:
+      app: gateway-server
+  template:
+    metadata:
+      labels:
+        app: gateway-server
+    spec:
+      containers:
+      - name: gateway-server
+        image: gateway-server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8090

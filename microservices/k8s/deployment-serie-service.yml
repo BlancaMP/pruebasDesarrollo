@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: serie-service
+  labels:
+    app: serie-service
+spec:
+  selector:
+    matchLabels:
+      app: serie-service
+  template:
+    metadata:
+      labels:
+        app: serie-service
+    spec:
+      containers:
+      - name: serie-service
+        image: serie-service
+        imagePullPolicy: Never
+        env:
+        - name: PORT
+          value: "8080"
+        ports:
+        - name: serie-port
+          containerPort: 8080      

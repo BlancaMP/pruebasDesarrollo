@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-user-service
+  labels:
+    app: user-service
+spec:
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+      - name: user-service
+        image: user-service
+        imagePullPolicy: Never
+        env:
+        - name: PORT
+          value: "8080"
+        ports:
+        - name: user-port
+          containerPort: 8080        

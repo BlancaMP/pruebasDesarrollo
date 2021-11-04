@@ -1,0 +1,38 @@
+server:
+  port: 8090
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka
+  instance:
+    hostname: ${spring.application.name}
+    instanceId: ${spring.application.name}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  zipkin:
+    baseUrl: http://zipkin:9411
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**
+        - id: serie-service
+          uri: lb://serie-service
+          predicates:
+            - Path=/serie/**
+        - id: film-service
+          uri: lb://film-service
+          predicates:
+            - Path=/film/**

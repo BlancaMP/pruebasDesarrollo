@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: serie-service
+spec:
+  selector:
+    app: serie-service
+  ports: 
+    - name: serie-port
+      port: 8080
+
